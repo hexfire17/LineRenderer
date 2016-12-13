@@ -6,7 +6,8 @@ public class Game : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-	//	_levelGenerator = FindObjectOfType<LevelGenerator> ();
+
+		//	_levelGenerator = FindObjectOfType<LevelGenerator> ();
 	//	_levelGenerator._levelIndex = 0;
 	//	NextLevel ();
 	}
