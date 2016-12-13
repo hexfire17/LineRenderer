@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{4DAC3A9B-04EB-9AC9-C56B-BEC83C552FEB}") = "LineGlider", "Assembly-CSharp.csproj", "{3047A333-2E7D-A9D4-2248-830F3D71CA41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3047A333-2E7D-A9D4-2248-830F3D71CA41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3047A333-2E7D-A9D4-2248-830F3D71CA41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3047A333-2E7D-A9D4-2248-830F3D71CA41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3047A333-2E7D-A9D4-2248-830F3D71CA41}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
