@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class PlayerInput : MonoBehaviour {
 
 	void Start()
 	{
 		_UIController = FindObjectOfType<UIController>();
+		_eventSystem = FindObjectOfType<EventSystem> ();
 	}
 
 	public Vector3 GetPointerLocation()
@@ -15,5 +17,22 @@ public class PlayerInput : MonoBehaviour {
 		return position;
 	}
 
-	public UIController _UIController;
+	public bool IsMouseDown()
+	{
+		return Input.GetMouseButtonDown (0) && !IsMouseOverUI ();
+	}
+
+	public bool IsMouseUp()
+	{
+		return Input.GetMouseButtonUp (0) && !IsMouseOverUI ();
+	}
+
+	public bool IsMouseOverUI()
+	{
+		return _eventSystem.IsPointerOverGameObject ();
+	}
+
+	private UIController _UIController;
+	private EventSystem _eventSystem;
+
 }

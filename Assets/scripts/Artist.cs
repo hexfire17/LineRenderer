@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class Artist : MonoBehaviour 
 {
@@ -11,7 +12,7 @@ public class Artist : MonoBehaviour
 
 	void Update ()
 	{
-		if (Input.GetMouseButtonDown (0))
+		if (_PlayerInput.IsMouseDown ())
 		{
 			_isDrawing = true;
 
@@ -20,7 +21,7 @@ public class Artist : MonoBehaviour
 			_lastPenLocation = currentPosition;
 
 		}
-		else if (Input.GetMouseButtonUp (0))
+		else if (_PlayerInput.IsMouseUp ())
 		{
 			_isDrawing = false;
 			Vector3 currentPosition = _PlayerInput.GetPointerLocation ();
