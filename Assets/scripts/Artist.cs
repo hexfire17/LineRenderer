@@ -6,9 +6,6 @@ public class Artist : MonoBehaviour
 	void Start()
 	{
 		_isDrawing = false;
-		drawLine (new Vector3(0, 0, 0), new Vector3 (1, 1, 0));
-		drawLine (new Vector3(-3, 3, 0), new Vector3 (0, 3, 0));
-
 	}
 
 	void Update ()
@@ -16,19 +13,29 @@ public class Artist : MonoBehaviour
 		if (Input.GetMouseButtonDown (0))
 		{
 			_isDrawing = true;
-			_lastPenLocation = _camera.ScreenToWorldPoint (Input.mousePosition);
+			Vector3 currentPosition = _camera.ScreenToWorldPoint (Input.mousePosition);
+			currentPosition.z = 0;
+
+			_startLinePoint = currentPosition;
+			_lastPenLocation = currentPosition;
 
 		}
 		else if (Input.GetMouseButtonUp (0))
 		{
 			_isDrawing = false;
 			Vector3 currentPenLocation = _camera.ScreenToWorldPoint (Input.mousePosition);
-
 			drawLine (_lastPenLocation, currentPenLocation);
+			Destroy (_aimParticles.gameObject);
 		}
 		else if (_isDrawing)
 		{
+			if (_aimParticles == null) {
+				_aimParticles = Instantiate (_aimParticlePrefab, _startLinePoint, _aimParticlePrefab.transform.rotation) as ParticleSystem;
+			}
 
+			Vector3 pointerPosition = _camera.ScreenToWorldPoint (Input.mousePosition);
+			pointerPosition.z = 0; // TODO make this anotherr method
+			_aimParticles.transform.LookAt (pointerPosition);
 		}
 	}
 
@@ -37,10 +44,6 @@ public class Artist : MonoBehaviour
 		// change them to be in 2d space
 		start = new Vector3(start.x, start.y, 0);
 		end = new Vector3 (end.x, end.y, 0);
-
-		// debug anchors
-		Instantiate (_pen, start, _pen.transform.rotation);
-		Instantiate (_pen, end, _pen.transform.rotation);
 
 		// instantiate and set position
 		Vector3 linePosition = (start + end) / 2;
@@ -64,7 +67,11 @@ public class Artist : MonoBehaviour
 
 	public GameObject _pen;
 	public Camera _camera;
+	public ParticleSystem _aimParticlePrefab;
 
 	private bool _isDrawing;
 	private Vector3 _lastPenLocation;
+	private ParticleSystem _aimParticles;
+	private Vector3 _startLinePoint;
+
 }
