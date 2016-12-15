@@ -27,6 +27,11 @@ public class PlayerInput : MonoBehaviour {
 		return Input.GetMouseButtonUp (0) && !IsMouseOverUI ();
 	}
 
+	public bool IsMouseHeld()
+	{
+		return Input.GetMouseButton (0) && !IsMouseOverUI ();
+	}
+
 	public bool IsMouseOverUI()
 	{
 		return _eventSystem.IsPointerOverGameObject ();

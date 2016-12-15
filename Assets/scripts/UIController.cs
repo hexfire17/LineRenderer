@@ -33,6 +33,18 @@ public class UIController : MonoBehaviour {
 		canvas.enabled = true;
 	}
 
+	public void EnterPanMode()
+	{
+		FindObjectOfType<Artist> ().enabled = false;
+		FindObjectOfType<EditorCameraController> ().enabled = true;
+	}
+
+	public void EnterDrawMode()
+	{
+		FindObjectOfType<Artist> ().enabled = true;
+		FindObjectOfType<EditorCameraController> ().enabled = false;
+	}
+
 	public Camera _riderCamera;
 	public Camera _editorCamera;
 
