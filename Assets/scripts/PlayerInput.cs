@@ -34,7 +34,7 @@ public class PlayerInput : MonoBehaviour {
 
 	public bool IsMouseOverUI()
 	{
-		return _eventSystem.IsPointerOverGameObject ();
+		return _eventSystem.IsPointerOverGameObject (-1) || _eventSystem.IsPointerOverGameObject(0);
 	}
 
 	private UIController _UIController;
