@@ -18,6 +18,11 @@ public class PlayerInput : MonoBehaviour {
 		return position;
 	}
 
+	public Vector3 GetCameraPosition ()
+	{
+		return _UIController.CurrentCamera ().transform.position;
+	}
+
 	public bool IsMouseDown()
 	{
 		return Input.GetMouseButtonDown (0) && !IsMouseOverUI ();

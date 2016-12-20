@@ -49,6 +49,7 @@
      <Compile Include="Assets\scripts\EditorCameraController.cs" />
      <Compile Include="Assets\scripts\Game.cs" />
      <Compile Include="Assets\scripts\InputExtensions.cs" />
+     <Compile Include="Assets\scripts\LineDrawer.cs" />
      <Compile Include="Assets\scripts\PlayerInput.cs" />
      <Compile Include="Assets\scripts\RiderCameraController.cs" />
      <Compile Include="Assets\scripts\RiderController.cs" />
