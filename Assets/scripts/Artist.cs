@@ -8,6 +8,7 @@ public class Artist : MonoBehaviour
 	{
 		_PlayerInput = FindObjectOfType<PlayerInput> ();
 		_LineDrawer = FindObjectOfType<LineDrawer> ();
+		_EditorCameraController = FindObjectOfType<EditorCameraController> ();
 		_currentMode = ArtistMode.IDLE;
 	}
 
@@ -15,15 +16,35 @@ public class Artist : MonoBehaviour
 	{
 		if (_PlayerInput.IsMouseDown ())
 		{
-			_LineDrawer.CaptureStartState ();
+			_currentMode = GetArtistMode ();
+			if (_currentMode == ArtistMode.DRAW)
+			{
+				_LineDrawer.CaptureStartState ();
+			}
+			else if (_currentMode == ArtistMode.PAN)
+			{
+				_EditorCameraController.CaptureStartState ();
+			}
 		}
 		else if (_PlayerInput.IsMouseHeld ())
 		{
-			_LineDrawer.UpdatePreview ();
+			if (_currentMode == ArtistMode.DRAW)
+			{
+				_LineDrawer.UpdatePreview ();
+			}
+			else if (_currentMode == ArtistMode.PAN)
+			{
+				_EditorCameraController.MoveCameraBasedOnDrag ();
+			}
 		}
 		else if (_PlayerInput.IsMouseUp ())
 		{ 
-			_LineDrawer.DrawLineToCurrentLocation ();
+			if (_currentMode == ArtistMode.DRAW)
+			{
+				_LineDrawer.DrawLineToCurrentLocation ();
+			}
+
+			_currentMode = ArtistMode.IDLE;
 		}
 	}
 
@@ -32,7 +53,7 @@ public class Artist : MonoBehaviour
 		Vector3 currentPointerPosition = _PlayerInput.GetPointerLocation ();
 		Vector3 currentCameraCenter = _PlayerInput.GetCameraPosition ();
 
-		bool isLeftOfCamera = currentPointerPosition.x < currentCameraCenter.x;
+		bool isLeftOfCamera = currentPointerPosition.x > currentCameraCenter.x;
 		if (isLeftOfCamera)
 		{
 			return ArtistMode.PAN;
@@ -48,6 +69,7 @@ public class Artist : MonoBehaviour
 
 	private PlayerInput _PlayerInput;
 	private LineDrawer _LineDrawer;
+	private EditorCameraController _EditorCameraController;
 
 	private Vector3 _lastPenLocation;
 	private ParticleSystem _aimParticles;

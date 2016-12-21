@@ -9,21 +9,17 @@ public class EditorCameraController : MonoBehaviour {
 		_playerInput = FindObjectOfType<PlayerInput> ();
 	}
 	
-	// Update is called once per frame
-	void Update ()
+	public void CaptureStartState()
 	{
-		if (_playerInput.IsMouseDown ()) 
-		{
-			_mousePanStartPosition = _playerInput.GetPointerLocation ();
-		}
+		_mousePanStartPosition = _playerInput.GetPointerLocation ();
+	}
 
-		if (_playerInput.IsMouseHeld ()) 
-		{
-			Vector3 currentMousePosition = _playerInput.GetPointerLocation ();
-			Vector3 mousePanDistance = _mousePanStartPosition - currentMousePosition;
-			Vector3 newCameraPosition = _editorCamera.transform.position + mousePanDistance;
-			_editorCamera.transform.position = newCameraPosition;
-		}
+	public void MoveCameraBasedOnDrag ()
+	{
+		Vector3 currentMousePosition = _playerInput.GetPointerLocation ();
+		Vector3 mousePanDistance = _mousePanStartPosition - currentMousePosition;
+		Vector3 newCameraPosition = _editorCamera.transform.position + mousePanDistance;
+		_editorCamera.transform.position = newCameraPosition;
 	}
 
 	public Camera _editorCamera;
