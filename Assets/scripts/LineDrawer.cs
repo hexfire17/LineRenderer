@@ -5,12 +5,13 @@ public class LineDrawer : MonoBehaviour {
 	
 	void Start ()
 	{
-		_PlayerInput = FindObjectOfType<PlayerInput> ();
+		_playerInput = FindObjectOfType<PlayerInput> ();
+		_trackManager = FindObjectOfType<TrackManager> ();
 	}
 
 	public void CaptureStartState ()
 	{
-		Vector3 currentPosition = _PlayerInput.GetPointerLocation ();
+		Vector3 currentPosition = _playerInput.GetPointerLocation ();
 		_startLinePoint = currentPosition;
 		_lastPenLocation = currentPosition;
 	}
@@ -22,13 +23,13 @@ public class LineDrawer : MonoBehaviour {
 			_aimParticles = Instantiate (_aimParticlePrefab, _startLinePoint, _aimParticlePrefab.transform.rotation) as ParticleSystem;
 		}
 
-		Vector3 currentPosition = _PlayerInput.GetPointerLocation ();
+		Vector3 currentPosition = _playerInput.GetPointerLocation ();
 		_aimParticles.transform.LookAt (currentPosition);
 	}
 
 	public void DrawLineToCurrentLocation ()
 	{
-		Vector3 currentPosition = _PlayerInput.GetPointerLocation ();
+		Vector3 currentPosition = _playerInput.GetPointerLocation ();
 		drawLine (_lastPenLocation, currentPosition);
 		Destroy (_aimParticles.gameObject);
 	}
@@ -48,14 +49,13 @@ public class LineDrawer : MonoBehaviour {
 		Quaternion rotation = Quaternion.Euler (0, 0, angle);
 
 		LineElement line = new LineElement (linePosition, localScale, rotation);
-		line.AddToScene ();
+		_trackManager.AddTrackElement (line);
 	}
 
-	public GameObject _pen;
 	public ParticleSystem _aimParticlePrefab;
 
-	private PlayerInput _PlayerInput;
-	private TrackManager _TrackManager; // TODO maybe change this to a draw event and the manager will auto capture it??
+	private PlayerInput _playerInput;
+	private TrackManager _trackManager; // TODO maybe change this to a draw event and the manager will auto capture it??
 
 	private Vector3 _lastPenLocation;
 	private ParticleSystem _aimParticles;

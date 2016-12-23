@@ -11,14 +11,24 @@ public class LineElement : ITrackElement
 
 	public void AddToScene()
 	{
-		GameObject line = GameObject.Instantiate (_penPrefab, _linePosition, _penPrefab.transform.rotation) as GameObject;
-		line.transform.localScale += _localScale;
-		line.transform.rotation = _rotation;
+		_instantiatedObject = GameObject.Instantiate (_penPrefab, _linePosition, _penPrefab.transform.rotation) as GameObject;
+		_instantiatedObject.transform.localScale += _localScale;
+		_instantiatedObject.transform.rotation = _rotation;
+	}
+
+	public void RemoveFromScene()
+	{
+		if (_instantiatedObject != null) 
+		{
+			GameObject.Destroy (_instantiatedObject);
+		}
 	}
 
 	private Vector3 _linePosition;
 	private Vector3 _localScale;
 	private Quaternion _rotation;
+
+	private GameObject _instantiatedObject;
 
 	private static GameObject _penPrefab = (GameObject) Resources.Load ("Pen");
 }

@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class TrackManager : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		_liveTrackElements = new Stack<ITrackElement> ();
+		_revertedTrackElements = new Stack<ITrackElement> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void AddTrackElement(ITrackElement element)
+	{
+		element.AddToScene ();
+		_liveTrackElements.Push (element);
 	}
+
+
+	
+	Stack<ITrackElement> _liveTrackElements;
+	Stack<ITrackElement> _revertedTrackElements;
 }
