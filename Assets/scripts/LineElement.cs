@@ -12,7 +12,7 @@ public class LineElement : ITrackElement
 	public void AddToScene()
 	{
 		GameObject line = GameObject.Instantiate (_penPrefab, _linePosition, _penPrefab.transform.rotation) as GameObject;
-		line.transform.localScale = _localScale;
+		line.transform.localScale += _localScale;
 		line.transform.rotation = _rotation;
 	}
 
