@@ -35,32 +35,30 @@ public class LineDrawer : MonoBehaviour {
 
 	private void drawLine(Vector3 start, Vector3 end)
 	{
-		// instantiate and set position
+		// Calculate positon
 		Vector3 linePosition = (start + end) / 2;
-		print ("position: " + linePosition);
-		GameObject line = Instantiate (_pen, linePosition, _pen.transform.rotation) as GameObject;
 
-		// set scale
+		// Calculate scale
 		float distance = Vector3.Distance (start, end);
-		print ("dist: " + distance);
-		Vector3 originalScale = line.transform.localScale;
-		print ("localScale: " + line.transform.localScale);
-		line.transform.localScale += (Vector3.right * distance);
+		Vector3 localScale = Vector3.right * distance;
 
-		// set rotation
+		// Calculate rotation
 		float slope = (end.y - start.y) / (end.x - start.x);
 		float angle = Mathf.Rad2Deg * Mathf.Atan (slope);
-		print ("slope: " + slope);
-		print ("FAngle: " + angle);
-		line.transform.rotation = Quaternion.Euler (0, 0, angle);
+		Quaternion rotation = Quaternion.Euler (0, 0, angle);
+
+		LineElement line = new LineElement (linePosition, localScale, rotation);
+		line.AddToScene ();
 	}
 
 	public GameObject _pen;
 	public ParticleSystem _aimParticlePrefab;
 
 	private PlayerInput _PlayerInput;
+	private TrackManager _TrackManager; // TODO maybe change this to a draw event and the manager will auto capture it??
 
 	private Vector3 _lastPenLocation;
 	private ParticleSystem _aimParticles;
 	private Vector3 _startLinePoint;
+
 }
