@@ -1,12 +1,12 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/UIController.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/TrackManager.cs">
     <Files>
-      <File FileName="Assets/scripts/Artist.cs" Line="4" Column="31" />
-      <File FileName="Assets/scripts/RiderCameraController.cs" Line="13" Column="3" />
-      <File FileName="Assets/scripts/Game.cs" Line="9" Column="1" />
-      <File FileName="Assets/scripts/RiderController.cs" Line="4" Column="29" />
-      <File FileName="Assets/scripts/UIController.cs" Line="9" Column="1" />
+      <File FileName="Assets/scripts/LineDrawer.cs" Line="9" Column="53" />
+      <File FileName="Assets/scripts/Game.cs" Line="9" Column="3" />
+      <File FileName="Assets/scripts/LineElement.cs" Line="23" Column="43" />
+      <File FileName="Assets/scripts/TrackManager.cs" Line="49" Column="4" />
+      <File FileName="Assets/scripts/Artist.cs" Line="4" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
